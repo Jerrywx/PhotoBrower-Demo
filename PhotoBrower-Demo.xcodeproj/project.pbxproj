@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		301471431E49827200FDFD7F /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3014713F1E49827200FDFD7F /* PhotoViewController.m */; };
 		301471441E49827200FDFD7F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 301471411E49827200FDFD7F /* ViewController.m */; };
+		301471471E49D69800FDFD7F /* JRPhotoBrower.m in Sources */ = {isa = PBXBuildFile; fileRef = 301471461E49D69800FDFD7F /* JRPhotoBrower.m */; };
+		3014714A1E49DA5D00FDFD7F /* JRPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 301471491E49DA5D00FDFD7F /* JRPhotoModel.m */; };
+		3014714D1E49DCBE00FDFD7F /* JRPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3014714C1E49DCBE00FDFD7F /* JRPhotoCell.m */; };
 		C431FE3A1D1A276900A26E21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C431FE391D1A276900A26E21 /* main.m */; };
 		C431FE3D1D1A276900A26E21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C431FE3C1D1A276900A26E21 /* AppDelegate.m */; };
 		C431FE431D1A276900A26E21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C431FE411D1A276900A26E21 /* Main.storyboard */; };
@@ -27,6 +30,12 @@
 		3014713F1E49827200FDFD7F /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		301471401E49827200FDFD7F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		301471411E49827200FDFD7F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		301471451E49D69800FDFD7F /* JRPhotoBrower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPhotoBrower.h; sourceTree = "<group>"; };
+		301471461E49D69800FDFD7F /* JRPhotoBrower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPhotoBrower.m; sourceTree = "<group>"; };
+		301471481E49DA5D00FDFD7F /* JRPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPhotoModel.h; sourceTree = "<group>"; };
+		301471491E49DA5D00FDFD7F /* JRPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPhotoModel.m; sourceTree = "<group>"; };
+		3014714B1E49DCBE00FDFD7F /* JRPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPhotoCell.h; sourceTree = "<group>"; };
+		3014714C1E49DCBE00FDFD7F /* JRPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPhotoCell.m; sourceTree = "<group>"; };
 		43FB9A6F61E893DC347128E2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5C2BED92A06D47D01D5E187F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B68F7CB8C290C5FB35360798 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,10 +82,10 @@
 		3014713D1E49827200FDFD7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3014713E1E49827200FDFD7F /* PhotoViewController.h */,
-				3014713F1E49827200FDFD7F /* PhotoViewController.m */,
 				301471401E49827200FDFD7F /* ViewController.h */,
 				301471411E49827200FDFD7F /* ViewController.m */,
+				3014713E1E49827200FDFD7F /* PhotoViewController.h */,
+				3014713F1E49827200FDFD7F /* PhotoViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -84,6 +93,12 @@
 		301471421E49827200FDFD7F /* PhotoControllers */ = {
 			isa = PBXGroup;
 			children = (
+				301471451E49D69800FDFD7F /* JRPhotoBrower.h */,
+				301471461E49D69800FDFD7F /* JRPhotoBrower.m */,
+				301471481E49DA5D00FDFD7F /* JRPhotoModel.h */,
+				301471491E49DA5D00FDFD7F /* JRPhotoModel.m */,
+				3014714B1E49DCBE00FDFD7F /* JRPhotoCell.h */,
+				3014714C1E49DCBE00FDFD7F /* JRPhotoCell.m */,
 			);
 			path = PhotoControllers;
 			sourceTree = "<group>";
@@ -192,6 +207,7 @@
 		C431FE2D1D1A276900A26E21 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = JR;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "王潇";
 				TargetAttributes = {
@@ -286,13 +302,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3014714A1E49DA5D00FDFD7F /* JRPhotoModel.m in Sources */,
 				C431FE5F1D1A3B3600A26E21 /* UIView+YYAdd.m in Sources */,
 				C431FE541D1A3AB500A26E21 /* YYPhotoGroupView.m in Sources */,
 				301471441E49827200FDFD7F /* ViewController.m in Sources */,
 				C431FE3D1D1A276900A26E21 /* AppDelegate.m in Sources */,
+				301471471E49D69800FDFD7F /* JRPhotoBrower.m in Sources */,
 				C431FE3A1D1A276900A26E21 /* main.m in Sources */,
 				C431FE571D1A3AE400A26E21 /* UIScrollView+YYAdd.m in Sources */,
 				C431FE5E1D1A3B3600A26E21 /* CALayer+YYAdd.m in Sources */,
+				3014714D1E49DCBE00FDFD7F /* JRPhotoCell.m in Sources */,
 				301471431E49827200FDFD7F /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

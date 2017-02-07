@@ -7,8 +7,11 @@
 //
 
 #import "PhotoViewController.h"
+#import "JRPhotoBrower.h"
 
 @interface PhotoViewController ()
+
+@property (nonatomic, strong) JRPhotoBrower *brower;
 
 @end
 
@@ -17,6 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+	self.brower = [[JRPhotoBrower alloc] initWithSuper:self.navigationController.view];
 }
 
 @end
