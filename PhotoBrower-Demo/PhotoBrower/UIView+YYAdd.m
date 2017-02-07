@@ -26,6 +26,7 @@
     return snap;
 }
 
+/// 获取View快照
 - (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates {
     if (![self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
         return [self snapshotImage];

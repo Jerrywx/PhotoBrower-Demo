@@ -11,6 +11,7 @@
 /// Single picture's info.
 @interface YYPhotoGroupItem : NSObject
 
+/// 
 @property (nonatomic, strong) UIView	*thumbView;
 @property (nonatomic, assign) CGSize	largeImageSize;
 @property (nonatomic, strong) NSURL		*largeImageURL;
@@ -24,11 +25,12 @@
 @property (nonatomic, readonly) NSInteger	currentPage;
 @property (nonatomic, assign)	BOOL		blurEffectBackground;
 
-- (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
+/// 禁用一下实例方法
++ (instancetype)new UNAVAILABLE_ATTRIBUTE;
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (instancetype)initWithFrame:(CGRect)frame UNAVAILABLE_ATTRIBUTE;
 
-+ (instancetype)new UNAVAILABLE_ATTRIBUTE;
 
 - (instancetype)initWithGroupItems:(NSArray *)groupItems;
 

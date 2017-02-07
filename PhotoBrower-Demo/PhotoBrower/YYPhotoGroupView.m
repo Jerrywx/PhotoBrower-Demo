@@ -60,17 +60,24 @@
 
 
 // =============================================================================	YYPhotoGroupCell
+// 单个图片
 @interface YYPhotoGroupCell : UIScrollView <UIScrollViewDelegate>
 
+/// 显示图片View
 @property (nonatomic, strong) UIView				*imageContainerView;
+/// 图片
 @property (nonatomic, strong) UIImageView			*imageView;
+/// 图片索引
 @property (nonatomic, assign) NSInteger				page;
-
+/// 是否显示进度
 @property (nonatomic, assign) BOOL					showProgress;
+/// 进度百分比
 @property (nonatomic, assign) CGFloat				progress;
+/// 图层
 @property (nonatomic, strong) CAShapeLayer			*progressLayer;
-
+///
 @property (nonatomic, strong) YYPhotoGroupItem		*item;
+/// 
 @property (nonatomic, readonly) BOOL				itemDidLoad;
 
 - (void)resizeSubviewSize;
@@ -79,9 +86,9 @@
 
 @implementation YYPhotoGroupCell
 
+
 - (instancetype)init {
     self = super.init;
-    if (!self) return nil;
     self.delegate						= self;
     self.bouncesZoom					= YES;
     self.maximumZoomScale				= 3;
@@ -178,40 +185,6 @@
 			[self.imageView.layer addFadeAnimationWithDuration:0.1 curve:UIViewAnimationCurveLinear];
 		}
 	}];
-	
-	
-////    @weakify(self);
-//    [_imageView setImageWithURL:item.largeImageURL
-//					placeholder:item.thumbImage
-//						options:kNilOptions 
-//					   progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-////        @strongify(self);
-//        if (!self) return;
-//        CGFloat progress = receivedSize / (float)expectedSize;
-//        progress = progress < 0.01 ? 0.01 : progress > 1 ? 1 : progress;
-//        if (isnan(progress)) progress = 0;
-//        self.progressLayer.hidden = NO;
-//        self.progressLayer.strokeEnd = progress;
-//    } transform:nil 
-//	 completion:^(UIImage *image, 
-//				  NSURL *url, 
-//				  YYWebImageFromType from, 
-//				  YYWebImageStage stage, 
-//				  NSError *error) {
-//
-////        @strongify(self);
-//        if (!self) return;
-//        self.progressLayer.hidden = YES;
-//        if (stage == YYWebImageStageFinished) {
-//            self.maximumZoomScale = 3;
-//            if (image) {
-//                self->_itemDidLoad = YES;
-//                
-//                [self resizeSubviewSize];
-//                [self.imageView.layer addFadeAnimationWithDuration:0.1 curve:UIViewAnimationCurveLinear];
-//            }
-//        }
-//    }];
     [self resizeSubviewSize];
 }
 
@@ -247,19 +220,21 @@
     [CATransaction commit];
 }
 
+#pragma mark - UIScrollViewDelegate
+// 返回缩放完成后的View
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
     return _imageContainerView;
 }
-
+// 缩放
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
     UIView *subView = _imageContainerView;
-    
+
     CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width)?
     (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;
-    
+
     CGFloat offsetY = (scrollView.bounds.size.height > scrollView.contentSize.height)?
     (scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5 : 0.0;
-    
+
     subView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
                                  scrollView.contentSize.height * 0.5 + offsetY);
 }
@@ -268,7 +243,8 @@
 
 // =============================================================================	YYPhotoGroupView
 @interface YYPhotoGroupView() <UIScrollViewDelegate, UIGestureRecognizerDelegate>
-@property (nonatomic, weak) UIView *fromView;
+
+@property (nonatomic, weak) UIView				*fromView;
 @property (nonatomic, weak) UIView				*toContainerView;
 
 @property (nonatomic, strong) UIImage			*snapshotImage;
@@ -293,6 +269,13 @@
 
 @implementation YYPhotoGroupView
 
+
+/**
+ 初始化
+
+ @param groupItems <#groupItems description#>
+ @return <#return value description#>
+ */
 - (instancetype)initWithGroupItems:(NSArray *)groupItems {
 	// 1.
     self = [super init];
@@ -311,6 +294,7 @@
 																		  action:@selector(dismiss)];
     tap.delegate = self;
     [self addGestureRecognizer:tap];
+
     // 3.2 双击手势
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self
 																		   action:@selector(doubleTap:)];
@@ -319,6 +303,7 @@
 	// 指定双击失败触发单击
     [tap requireGestureRecognizerToFail: tap2];
     [self addGestureRecognizer:tap2];
+
 	// 3.2 长按手势
     UILongPressGestureRecognizer *press = [[UILongPressGestureRecognizer alloc] initWithTarget:self
 																						action:@selector(longPress)];
@@ -330,41 +315,45 @@
 																		  action:@selector(pan:)];
 	[self addGestureRecognizer:pan];
 	_panGesture = pan;
-    
-	
+
 	// 4.
     _cells = @[].mutableCopy;
-    
-    _background = UIImageView.new;
-    _background.frame = self.bounds;
+	
+	// 背景图片
+    _background			= UIImageView.new;
+    _background.frame	= self.bounds;
     _background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    _blurBackground = UIImageView.new;
-    _blurBackground.frame = self.bounds;
+	
+	// 半透明北京
+    _blurBackground			= UIImageView.new;
+    _blurBackground.frame	= self.bounds;
     _blurBackground.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    _contentView = UIView.new;
-    _contentView.frame = self.bounds;
+	
+	// 内容
+    _contentView		= UIView.new;
+    _contentView.frame	= self.bounds;
     _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    _scrollView = UIScrollView.new;
-    _scrollView.frame = CGRectMake(-kPadding / 2, 0, self.width + kPadding, self.height);
-    _scrollView.delegate = self;
-    _scrollView.scrollsToTop = NO;
-    _scrollView.pagingEnabled = YES;
-    _scrollView.alwaysBounceHorizontal = groupItems.count > 1;
-    _scrollView.showsHorizontalScrollIndicator = NO;
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    _scrollView.delaysContentTouches = NO;
+	
+	// UIScrollView
+    _scrollView					= UIScrollView.new;
+    _scrollView.frame			= CGRectMake(-kPadding / 2, 0, self.width + kPadding, self.height);
+    _scrollView.delegate		= self;
+    _scrollView.scrollsToTop	= NO;
+    _scrollView.pagingEnabled	= YES;
+    _scrollView.alwaysBounceHorizontal			= groupItems.count > 1;
+    _scrollView.showsHorizontalScrollIndicator	= NO;
+    _scrollView.showsVerticalScrollIndicator	= NO;
+    _scrollView.autoresizingMask		= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _scrollView.delaysContentTouches	= NO;
     _scrollView.canCancelContentTouches = YES;
-    
-    _pager = [[UIPageControl alloc] init];
-    _pager.hidesForSinglePage = YES;
-    _pager.userInteractionEnabled = NO;
-    _pager.width = self.width - 36;
-    _pager.height = 10;
-    _pager.center = CGPointMake(self.width / 2, self.height - 18);
+	
+	// UIPageControl
+    _pager							= [[UIPageControl alloc] init];
+    _pager.hidesForSinglePage		= YES;
+    _pager.userInteractionEnabled	= NO;
+    _pager.width	= self.width - 36;
+    _pager.height	= 10;
+    _pager.center	= CGPointMake(self.width / 2, self.height - 18);
     _pager.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     
     [self addSubview:_background];
@@ -372,26 +361,33 @@
     [self addSubview:_contentView];
     [_contentView addSubview:_scrollView];
     [_contentView addSubview:_pager];
-	
-	
-//	_background.backgroundColor = [UIColor redColor];
-//	_blurBackground.backgroundColor = [UIColor orangeColor];
+
+	// 设置透明颜色
 	_blurBackground.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.9];
 
     return self;
 }
 
+/**
+ 显示图片浏览器
+
+ @param fromView 打开的View
+ @param toContainer 添加到的View
+ @param animated 是否动画
+ @param completion 完成回调
+ */
 - (void)presentFromImageView:(UIView *)fromView
                  toContainer:(UIView *)toContainer
                     animated:(BOOL)animated
                   completion:(void (^)(void))completion {
+	// 1. 安全判断
     if (!toContainer) return;
+
+	// 2. 保存属性
+    _fromView		 = fromView;			// 点击的图片
+    _toContainerView = toContainer;			// 添加到的图片
 	
-//	NSLog(@"v1: %@", NSStringFromCGRect(fromView.frame));
-//	NSLog(@"v2: %@", NSStringFromCGRect(toContainer.frame));
-    _fromView		 = fromView;
-    _toContainerView = toContainer;
-    
+	// 3. 当前索引
     NSInteger page = -1;
     for (NSUInteger i = 0; i < self.groupItems.count; i++) {
         if (fromView == ((YYPhotoGroupItem *)self.groupItems[i]).thumbView) {
@@ -401,21 +397,17 @@
     }
     if (page == -1) page = 0;
     _fromItemIndex = page;
-    // 快照
+
+    // 3. 快照
     _snapshotImage = [_toContainerView snapshotImageAfterScreenUpdates:NO];
 
     BOOL fromViewHidden = fromView.hidden;
     fromView.hidden = YES;
     _snapshorImageHideFromView = [_toContainerView snapshotImage];
     fromView.hidden = fromViewHidden;
-    
-    _background.image = _snapshorImageHideFromView;
 	
-//    if (_blurEffectBackground) {
-//        _blurBackground.image = [_snapshorImageHideFromView imageByBlurDark]; //Same to UIBlurEffectStyleDark
-//    } else {
-//        _blurBackground.image = [UIImage imageWithColor:[UIColor blackColor]];
-//    }
+	// 4. 背景设置为快照
+    _background.image = _snapshorImageHideFromView;
 	
     self.size = _toContainerView.size;
     self.blurBackground.alpha = 0;
@@ -423,7 +415,7 @@
     self.pager.numberOfPages = self.groupItems.count;
     self.pager.currentPage = page;
 	
-	
+	// 添加
     [_toContainerView addSubview:self];
     
     _scrollView.contentSize = CGSizeMake(_scrollView.width * self.groupItems.count, _scrollView.height);
@@ -431,19 +423,16 @@
 												_scrollView.width, _scrollView.height)
 							animated:NO];
 	
-//	NSLog(@"frame - %@", NSStringFromCGSize(_scrollView.contentSize));
-//	NSLog(@"frame - %@", NSStringFromCGRect(CGRectMake(_scrollView.width * _pager.currentPage, 0,
-//													   _scrollView.width, _scrollView.height)));
-	
     [self scrollViewDidScroll:_scrollView];
     
     [UIView setAnimationsEnabled:YES];
     _fromNavigationBarHidden = [UIApplication sharedApplication].statusBarHidden;
+	
+	// 状态栏
     [[UIApplication sharedApplication] setStatusBarHidden:YES 
 											withAnimation:animated ? 
 								 UIStatusBarAnimationFade: UIStatusBarAnimationNone];
-    
-	
+
 	// 获取当前 cell
     YYPhotoGroupCell *cell = [self cellForPage:self.currentPage];
     YYPhotoGroupItem *item = _groupItems[self.currentPage];
