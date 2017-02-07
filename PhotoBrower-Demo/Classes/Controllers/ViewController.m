@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "YYPhotoGroupView.h"
 #import <UIImageView+WebCache.h>
+#import "PhotoViewController.h"
 
 @interface ViewController ()
 
@@ -56,6 +57,12 @@
 		[self.itemArray addObject:imageView];
 		[self.view addSubview:imageView];
 	}
+	
+	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(40, 420, 80, 30)];
+	button.backgroundColor = [UIColor redColor];
+	[button setTitle:@"控制器" forState:UIControlStateNormal];
+	[button addTarget:self action:@selector(openVC) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:button];
 }
 
 - (void)loadData {
@@ -95,6 +102,11 @@
 				toContainer:self.navigationController.view
 				   animated:YES
 				 completion:nil];
+}
+
+- (void)openVC {
+	PhotoViewController *vc = [[PhotoViewController alloc] init];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

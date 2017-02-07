@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		301471431E49827200FDFD7F /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3014713F1E49827200FDFD7F /* PhotoViewController.m */; };
+		301471441E49827200FDFD7F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 301471411E49827200FDFD7F /* ViewController.m */; };
 		C431FE3A1D1A276900A26E21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C431FE391D1A276900A26E21 /* main.m */; };
 		C431FE3D1D1A276900A26E21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C431FE3C1D1A276900A26E21 /* AppDelegate.m */; };
-		C431FE401D1A276900A26E21 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C431FE3F1D1A276900A26E21 /* ViewController.m */; };
 		C431FE431D1A276900A26E21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C431FE411D1A276900A26E21 /* Main.storyboard */; };
 		C431FE451D1A276900A26E21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C431FE441D1A276900A26E21 /* Assets.xcassets */; };
 		C431FE481D1A276900A26E21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C431FE461D1A276900A26E21 /* LaunchScreen.storyboard */; };
@@ -22,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3014713E1E49827200FDFD7F /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		3014713F1E49827200FDFD7F /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		301471401E49827200FDFD7F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		301471411E49827200FDFD7F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		43FB9A6F61E893DC347128E2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5C2BED92A06D47D01D5E187F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B68F7CB8C290C5FB35360798 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,8 +34,6 @@
 		C431FE391D1A276900A26E21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C431FE3B1D1A276900A26E21 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C431FE3C1D1A276900A26E21 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C431FE3E1D1A276900A26E21 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C431FE3F1D1A276900A26E21 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C431FE421D1A276900A26E21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C431FE441D1A276900A26E21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C431FE471D1A276900A26E21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,6 +61,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3014713C1E49827200FDFD7F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3014713D1E49827200FDFD7F /* Controllers */,
+				301471421E49827200FDFD7F /* PhotoControllers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3014713D1E49827200FDFD7F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3014713E1E49827200FDFD7F /* PhotoViewController.h */,
+				3014713F1E49827200FDFD7F /* PhotoViewController.m */,
+				301471401E49827200FDFD7F /* ViewController.h */,
+				301471411E49827200FDFD7F /* ViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		301471421E49827200FDFD7F /* PhotoControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PhotoControllers;
+			sourceTree = "<group>";
+		};
 		7B394668AE10E81921F3F330 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,8 +128,7 @@
 			children = (
 				C431FE3B1D1A276900A26E21 /* AppDelegate.h */,
 				C431FE3C1D1A276900A26E21 /* AppDelegate.m */,
-				C431FE3E1D1A276900A26E21 /* ViewController.h */,
-				C431FE3F1D1A276900A26E21 /* ViewController.m */,
+				3014713C1E49827200FDFD7F /* Classes */,
 				C431FE511D1A3AB500A26E21 /* PhotoBrower */,
 				C431FE381D1A276900A26E21 /* Supporting Files */,
 			);
@@ -168,6 +197,7 @@
 				TargetAttributes = {
 					C431FE341D1A276900A26E21 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = B5SJ8JYP65;
 					};
 				};
 			};
@@ -256,13 +286,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C431FE401D1A276900A26E21 /* ViewController.m in Sources */,
 				C431FE5F1D1A3B3600A26E21 /* UIView+YYAdd.m in Sources */,
 				C431FE541D1A3AB500A26E21 /* YYPhotoGroupView.m in Sources */,
+				301471441E49827200FDFD7F /* ViewController.m in Sources */,
 				C431FE3D1D1A276900A26E21 /* AppDelegate.m in Sources */,
 				C431FE3A1D1A276900A26E21 /* main.m in Sources */,
 				C431FE571D1A3AE400A26E21 /* UIScrollView+YYAdd.m in Sources */,
 				C431FE5E1D1A3B3600A26E21 /* CALayer+YYAdd.m in Sources */,
+				301471431E49827200FDFD7F /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +408,7 @@
 			baseConfigurationReference = 5C2BED92A06D47D01D5E187F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B5SJ8JYP65;
 				INFOPLIST_FILE = "PhotoBrower-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jerry.PhotoBrower-Demo";
@@ -389,6 +421,7 @@
 			baseConfigurationReference = 43FB9A6F61E893DC347128E2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B5SJ8JYP65;
 				INFOPLIST_FILE = "PhotoBrower-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jerry.PhotoBrower-Demo";
