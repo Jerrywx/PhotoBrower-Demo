@@ -155,15 +155,6 @@
         return;
     }
 	
-	[_imageView sd_setImageWithURL:item.largeImageURL 
-				  placeholderImage:item.thumbImage
-						 completed:^(UIImage *image, NSError *error,
-									 SDImageCacheType cacheType, NSURL *imageURL) {
-							 NSLog(@"==== %@", image);
-							 
-	}];
-	
-	
 	[_imageView sd_setImageWithURL:item.largeImageURL
 				  placeholderImage:item.thumbImage 
 						   options:SDWebImageRetryFailed
@@ -188,11 +179,13 @@
     [self resizeSubviewSize];
 }
 
+/// 设置子控件尺寸
 - (void)resizeSubviewSize {
     _imageContainerView.origin = CGPointZero;
-    _imageContainerView.width = self.width;
+    _imageContainerView.width  = self.width;
     
     UIImage *image = _imageView.image;
+	// 计算图片款高比
     if (image.size.height / image.size.width > self.height / self.width) {
         _imageContainerView.height = floor(image.size.height / (image.size.width / self.width));
     } else {
@@ -202,9 +195,12 @@
         _imageContainerView.height = height;
         _imageContainerView.centerY = self.height / 2;
     }
+	
+	// 高度处理
     if (_imageContainerView.height > self.height && _imageContainerView.height - self.height <= 1) {
         _imageContainerView.height = self.height;
     }
+	// 
     self.contentSize = CGSizeMake(self.width, MAX(_imageContainerView.height, self.height));
     [self scrollRectToVisible:self.bounds animated:NO];
     
